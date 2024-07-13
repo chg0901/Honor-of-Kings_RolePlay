@@ -42,7 +42,9 @@ psutil
 jieba_fast
 jieba
 LangSegment
-transformers==4.34.0
+#transformers==4.34.0
+transformers==4.37.0
+huggingface-hub==0.20.3
 transformers_stream_generator==0.0.4 
 peft 
 deepspeed
