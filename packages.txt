@@ -2,4 +2,5 @@ git
 git-lfs
 ffmpeg
 sox 
+libsox-dev
 libsox-fmt-all
