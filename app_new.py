@@ -344,14 +344,14 @@ if __name__ == "__main__":
     print(directory_list)
 
     # 模型位置移动
-    os.system(f"mv -f {lively_path}/GPT_SoVITS/pretrained_models/* ./GPT_SoVITS/pretrained_models/")
-    os.system(f"mv -f {lively_path}/checkpoints/* ./checkpoints")
-    # os.system(f"mv {lively_path}//FunASR/* ./FunASR/")
-    os.system(f"mv {lively_path}//gfpgan/* ./gfpgan/")
+    os.system(f"rsync -av {lively_path}/GPT_SoVITS/pretrained_models/ ./GPT_SoVITS/pretrained_models/")
+    os.system(f"rsync -av {lively_path}/checkpoints/ ./checkpoints/")
+    # os.system(f"rsync -av {lively_path}//FunASR/ ./FunASR/")
+    os.system(f"rsync -av {lively_path}//gfpgan/ ./gfpgan/")
 
     llm_class = LLM(mode='offline')
     try:
-        llm = llm_class.init_model('InternLM2', 'InternLM2/InternLM2_7b', prefix_prompt=prefix_prompt)
+        llm = llm_class.init_model('InternLM2', llm_path, prefix_prompt=prefix_prompt)
         success_print("Success!!! LLM模块加载成功")
     except Exception as e:
         error_print(f"Error: {e}")
