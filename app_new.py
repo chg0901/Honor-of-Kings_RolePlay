@@ -12,6 +12,7 @@ os.environ["GRADIO_TEMP_DIR"]= './temp'
 os.environ["WEBUI"] = "true"
 #os.environ['LD_LIBRARY_PATH'] = '/usr/local/lib:/usr/lib:' + os.environ.get('LD_LIBRARY_PATH', '')
 
+os.system('pip install --upgrade huggingface_hub')
 
 def get_title(title = ''):
     description = f"""
