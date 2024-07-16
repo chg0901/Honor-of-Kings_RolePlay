@@ -328,8 +328,8 @@ if __name__ == "__main__":
     # LLM模型下载
     # download(model_repo=LLM_openxlab_path,
     #      output='./InternLM2/InternLM2_7b')
-    os.system('apt install git')
-    os.system('apt install git-lfs')
+    # os.system('apt install git')
+    # os.system('apt install git-lfs')
     os.system(f'git clone https://code.openxlab.org.cn/shenfeilang/Honor-of-Kings_RolePlay.git {llm_path}')
     os.system(f'cd {llm_path} && git lfs pull')
 
