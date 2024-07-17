@@ -48,7 +48,9 @@ def enhancer_generator_no_len(images, method='gfpgan', bg_upsampler='realesrgan'
         print("GFPGAN library not found. Installing...")
         try:
             # Use pip to install the library
-            import subprocess
+            import subprocess, os
+            os.system("pip install tb-nightly -i https://mirrors.aliyun.com/pypi/simple")
+            os.system("pip install gfpgan==1.3.8 -i https://mirrors.aliyun.com/pypi/simple")
             subprocess.check_call(["pip", "install", "gfpgan"])
             
             # Retry the import after installation
