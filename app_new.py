@@ -6,6 +6,8 @@ import time
 from zhconv import convert
 from LLM import LLM
 from src.cost_time import calculate_time
+
+# 环境命令
 #from openxlab.model import download
 #import pdb
 os.environ["GRADIO_TEMP_DIR"]= './temp'
@@ -16,6 +18,51 @@ os.system('pip install --upgrade huggingface_hub')
 # https://pytorch.org/audio/stable/installation.html
 # SoX FFmpeg Starting version 2.1, TorchAudio official binary distributions are compatible with FFmpeg version 6, 5 and 4. (>=4.4, <7).
 os.system("conda install -c conda-forge 'ffmpeg<7'")
+
+    # os.chdir('/home/xlab-app-center/')
+    #os.system('ln -s /usr/local/lib /usr/lib')
+    #os.system('find libsox.so')
+    
+LLM_openxlab_path = "shenfeilang/Honor-of-Kings_RolePlay"
+lively_openxlab_path = "YongXie66/DaJi_RolePlay"
+llm_path = "./InternLM2/InternLM2_7b"
+lively_path = "./DaJi_RolePlay"
+
+# 设置默认system
+default_system = '你正在扮演王者荣耀里的角色妲己'
+# 设置默认的prompt
+prefix_prompt = '''请用少于50个字回答以下问题\n\n'''
+
+# 设定默认参数值，可修改
+use_ref_video = False
+ref_video = None
+ref_info = 'pose'
+use_idle_mode = False
+length_of_audio = 5
+
+    # LLM模型下载
+    # download(model_repo=LLM_openxlab_path,
+    #      output='./InternLM2/InternLM2_7b')
+    # os.system('apt install git')
+    # os.system('apt install git-lfs')
+os.system(f'git clone https://code.openxlab.org.cn/shenfeilang/Honor-of-Kings_RolePlay.git {llm_path}')
+os.system(f'cd {llm_path} && git lfs pull')
+
+    # # gpt_sovits, sadtalker 模型下载
+    # download(model_repo=lively_openxlab_path,
+        #  output= lively_path)
+os.system(f'git clone https://code.openxlab.org.cn/YongXie66/DaJi_RolePlay.git {lively_path}')
+os.system(f'cd {lively_path} && git lfs pull')
+
+# 获取当前目录下的文件和文件夹列表
+directory_list = os.listdir('.')
+print(directory_list)
+
+# 模型位置移动
+os.system(f"rsync -av {lively_path}/GPT_SoVITS/pretrained_models/ ./GPT_SoVITS/pretrained_models/")
+os.system(f"rsync -av {lively_path}/checkpoints/ ./checkpoints/")
+# os.system(f"rsync -av {lively_path}//FunASR/ ./FunASR/")
+os.system(f"rsync -av {lively_path}//gfpgan/ ./gfpgan/")
 
 def get_title(title = ''):
     description = f"""
@@ -29,19 +76,6 @@ def get_title(title = ''):
     </p>
     """
     return description
-
-
-# 设置默认system
-default_system = '你正在扮演王者荣耀里的角色妲己'
-# 设置默认的prompt
-prefix_prompt = '''请用少于50个字回答以下问题\n\n'''
-
-# 设定默认参数值，可修改
-use_ref_video = False
-ref_video = None
-ref_info = 'pose'
-use_idle_mode = False
-length_of_audio = 5
 
 @calculate_time
 def Asr(audio):
@@ -149,6 +183,7 @@ def clear_session():
     llm.clear_history()
     return '', []
 
+
 def clear_text():
     return "", ""
 
@@ -161,7 +196,6 @@ def load_vits_model(gpt_path, sovits_path, progress=gr.Progress(track_tqdm=True)
     vits.load_model(all_gpt_path, all_sovits_path)
     gr.Info("模型加载成功")
     return gpt_path, sovits_path
-
 
 def webui_setting(talk = True):
     if not talk:
@@ -317,40 +351,6 @@ def error_print(text):
 
 
 if __name__ == "__main__":
-
-    # 环境命令
-    # os.chdir('/home/xlab-app-center/')
-    #os.system('ln -s /usr/local/lib /usr/lib')
-    #os.system('find libsox.so')
-    
-    LLM_openxlab_path = "shenfeilang/Honor-of-Kings_RolePlay"
-    lively_openxlab_path = "YongXie66/DaJi_RolePlay"
-    llm_path = "./InternLM2/InternLM2_7b"
-    lively_path = "./DaJi_RolePlay"
-
-    # LLM模型下载
-    # download(model_repo=LLM_openxlab_path,
-    #      output='./InternLM2/InternLM2_7b')
-    # os.system('apt install git')
-    # os.system('apt install git-lfs')
-    os.system(f'git clone https://code.openxlab.org.cn/shenfeilang/Honor-of-Kings_RolePlay.git {llm_path}')
-    os.system(f'cd {llm_path} && git lfs pull')
-
-    # # gpt_sovits, sadtalker 模型下载
-    # download(model_repo=lively_openxlab_path,
-        #  output= lively_path)
-    os.system(f'git clone https://code.openxlab.org.cn/YongXie66/DaJi_RolePlay.git {lively_path}')
-    os.system(f'cd {lively_path} && git lfs pull')
-
-    # 获取当前目录下的文件和文件夹列表
-    directory_list = os.listdir('.')
-    print(directory_list)
-
-    # 模型位置移动
-    os.system(f"rsync -av {lively_path}/GPT_SoVITS/pretrained_models/ ./GPT_SoVITS/pretrained_models/")
-    os.system(f"rsync -av {lively_path}/checkpoints/ ./checkpoints/")
-    # os.system(f"rsync -av {lively_path}//FunASR/ ./FunASR/")
-    os.system(f"rsync -av {lively_path}//gfpgan/ ./gfpgan/")
 
     llm_class = LLM(mode='offline')
     try:
