@@ -22,6 +22,7 @@ os.system('pip install --upgrade huggingface_hub')
 os.system("pip uninstall ffmpeg")
 os.system("pip uninstall python-ffmpeg")
 os.system('pip install -U ffmpeg-python')
+#pip config set global.index-url https://mirrors.aliyun.com/pypi/simple
 os.system("pip install tb-nightly -i https://mirrors.aliyun.com/pypi/simple")
 os.system("pip install gfpgan==1.3.8 -i https://mirrors.aliyun.com/pypi/simple")
 
