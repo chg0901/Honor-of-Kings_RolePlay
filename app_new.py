@@ -19,7 +19,7 @@ os.system('pip install --upgrade huggingface_hub')
 # https://pytorch.org/audio/stable/installation.html
 # SoX FFmpeg Starting version 2.1, TorchAudio official binary distributions are compatible with FFmpeg version 6, 5 and 4. (>=4.4, <7).
 os.system("conda install -c conda-forge 'ffmpeg<7'")
-os.system('pip install -U python-ffmpeg')
+os.system('pip install -U ffmpeg-python')
 
     # os.chdir('/home/xlab-app-center/')
     #os.system('ln -s /usr/local/lib /usr/lib')
