@@ -1,4 +1,4 @@
-ffmpeg # 'ffmpeg<7'
+ffmpeg
 git
 git-lfs
 # https://ubuntuhandbook.org/index.php/2023/03/ffmpeg-6-0-released-how-to-install-in-ubuntu-22-04-20-04/
