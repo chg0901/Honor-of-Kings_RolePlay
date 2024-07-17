@@ -4,3 +4,4 @@ ffmpeg
 sox 
 libsox-dev
 libsox-fmt-all
+rsync
