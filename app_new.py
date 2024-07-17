@@ -13,6 +13,7 @@ from src.cost_time import calculate_time
 os.environ["GRADIO_TEMP_DIR"]= './temp'
 os.environ["WEBUI"] = "true"
 #os.environ['LD_LIBRARY_PATH'] = '/usr/local/lib:/usr/lib:' + os.environ.get('LD_LIBRARY_PATH', '')
+os.environ["PYTORCH_USE_CUDA_DSA"] = "1"
 
 os.system('pip install --upgrade huggingface_hub')
 # https://pytorch.org/audio/stable/installation.html
