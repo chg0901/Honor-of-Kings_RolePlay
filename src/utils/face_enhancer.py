@@ -1,13 +1,9 @@
 import os
+import cv2
 import torch 
-
-
 from tqdm import tqdm
 
 from src.utils.videoio import load_video_to_cv2
-
-import cv2
-
 
 class GeneratorWithLen(object):
     """ From https://stackoverflow.com/a/7460929 """
