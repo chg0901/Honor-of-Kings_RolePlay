@@ -65,7 +65,7 @@ os.system(f"rsync -av {lively_path}/GPT_SoVITS/pretrained_models/ ./GPT_SoVITS/p
 os.system(f"rsync -av {lively_path}/checkpoints/ ./checkpoints/")
 # os.system(f"rsync -av {lively_path}//FunASR/ ./FunASR/")
 os.system(f"rsync -av {lively_path}//gfpgan/ ./gfpgan/")
-os.system(f"rsyc -av ./frpc_linux_amd64_v0.2 /usr/local/share/python/.pyenv/versions/3.10.13/lib/python3.10/site-packages/gradio/")
+os.system(f"rsync -av ./src/files/ /usr/local/share/python/.pyenv/versions/3.10.13/lib/python3.10/site-packages/gradio/")
 
 def get_title(title = ''):
     description = f"""
