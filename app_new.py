@@ -15,7 +15,7 @@ os.environ["WEBUI"] = "true"
 #os.environ['LD_LIBRARY_PATH'] = '/usr/local/lib:/usr/lib:' + os.environ.get('LD_LIBRARY_PATH', '')
 os.environ["PYTORCH_USE_CUDA_DSA"] = "1"
 
-os.system('pip install --upgrade huggingface_hub')
+os.system('pip install --upgrade huggingface-hub')
 # https://pytorch.org/audio/stable/installation.html
 # SoX FFmpeg Starting version 2.1, TorchAudio official binary distributions are compatible with FFmpeg version 6, 5 and 4. (>=4.4, <7).
 #os.system("conda install -c conda-forge 'ffmpeg<7'")
